@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18 Jahre - Wir werden Volljährig</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <audio id="bgMusic" loop volume="0.3"></audio>
+    
+    <!-- MAIN LANDING PAGE -->
+    <div id="mainPage" class="main-page">
+        <!-- Visitor Counter -->
+        <div class="visitor-counter">
+            <span>🔍 Besucher heute:</span>
+            <div class="counter-display">
+                <span id="visitorCount">000832</span>
+            </div>
+        </div>
+
+        <!-- Login Box -->
+        <div class="login-box">
+            <h3>Login heute:</h3>
+            <input type="text" id="nameInput" placeholder="Name" class="login-input">
+            <div class="security-question">
+                <label>Wie heißt die Schule?</label>
+                <input type="password" id="securityInput" placeholder="Antwort" class="login-input">
+            </div>
+            <button id="loginBtn" class="login-button">Einloggen</button>
+        </div>
+
+        <!-- Center Content -->
+        <div class="center-content">
+            <h1 class="title">18<br><span class="subtitle">Jahre</span></h1>
+            <p class="tagline">-wir werden volljährig</p>
+            <p class="date-text" id="dateText">01.01.2026</p>
+            <button id="knowUsBtn" class="know-us-button">DU KENNST UNS →</button>
+        </div>
+
+        <!-- Interactive Elements Container -->
+        <div class="interactive-elements">
+            <!-- Tourneeplakat (top-left) -->
+            <div class="element tourneeplakat" data-element="tourneeplakat">
+                <img src="" alt="Tourneeplakat" id="plakatImg">
+            </div>
+
+            <!-- Stern (left) -->
+            <div class="element stern" data-element="stern">
+                <div class="star-icon">⭐</div>
+                <p>Selbsttest<br>hast du das<br>zeug zum<br>STAR?</p>
+            </div>
+
+            <!-- Notizbuch (bottom-left) -->
+            <div class="element notizbuch" data-element="notizbuch">
+                <p>Mitmachen oder<br>Gutscheine<br>einlösen</p>
+            </div>
+
+            <!-- Auto/Puch (center-bottom) -->
+            <div class="element auto" data-element="auto">
+                <div class="car-icon">🚗</div>
+                <p>GE 230<br>wie alles begann<br>und fortfuhr</p>
+            </div>
+
+            <!-- Post-It (bottom-right area) -->
+            <div class="element postit" data-element="postit">
+                <p>Danke<br>sagen</p>
+            </div>
+
+            <!-- Briefkasten (right) -->
+            <div class="element briefkasten" data-element="briefkasten">
+                <div class="mailbox-icon">📬</div>
+                <p>Erinnerungen und<br>Grüße hochladen</p>
+            </div>
+
+            <!-- Kalender (bottom-right) -->
+            <div class="element kalender" data-element="kalender">
+                <p>geistigen<br>Dünnschiss<br>hier runter<br>spülen</p>
+            </div>
+
+            <!-- Toilette (right-bottom) -->
+            <div class="element toilette" data-element="toilette">
+                <div class="toilet-icon">🚽</div>
+                <p>geistigen<br>Dünnschiss<br>hier runter<br>spülen</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Know Us Confirmation -->
+    <div id="knowUsModal" class="modal hidden">
+        <div class="modal-content know-us-modal">
+            <h2>⚠️ Warnung</h2>
+            <p>Diese Seite enthält<br>Inhalte für 18+</p>
+            <p style="font-size: 14px; margin-top: 20px;">Bist du 18 Jahre oder älter?</p>
+            <div class="modal-buttons">
+                <button id="confirmAgeBtn" class="modal-btn confirm">Ja, ich bin 18+</button>
+                <button id="cancelAgeBtn" class="modal-btn cancel">Nein, zurück</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Self-Test Quiz -->
+    <div id="quizModal" class="modal hidden">
+        <div class="modal-content quiz-modal">
+            <div class="quiz-header">
+                <h2 id="quizTitle">Selbsttest: Bist du ein STAR?</h2>
+                <button id="quizCloseBtn" class="close-btn">✕</button>
+            </div>
+            <div id="quizContainer"></div>
+            <div id="quizResult" class="hidden"></div>
+        </div>
+    </div>
+
+    <!-- MODAL: Timeline -->
+    <div id="timelineModal" class="modal hidden">
+        <div class="modal-content timeline-modal">
+            <button id="timelineCloseBtn" class="close-btn">✕</button>
+            <h2>GE 230 - Unser Zeitstrahl</h2>
+            <div id="timelineContainer"></div>
+        </div>
+    </div>
+
+    <!-- MODAL: Calendar -->
+    <div id="calendarModal" class="modal hidden">
+        <div class="modal-content calendar-modal">
+            <div class="calendar-header">
+                <button id="calendarCloseBtn" class="close-btn">✕</button>
+                <h2>Kalender & Gutscheine</h2>
+            </div>
+            <div class="calendar-content">
+                <div id="calendarContainer"></div>
+                <div class="voucher-sidebar">
+                    <h3>Verfügbare Gutscheine</h3>
+                    <button id="addVoucherBtn" class="add-voucher-btn">+ Gutschein hinzufügen</button>
+                    <div id="voucherList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Images Gallery -->
+    <div id="imagesModal" class="modal hidden">
+        <div class="modal-content images-modal">
+            <div class="images-header">
+                <button id="imagesCloseBtn" class="close-btn">✕</button>
+                <button id="uploadImagesBtn" class="upload-btn">📤 Hochladen</button>
+            </div>
+            <div id="imagesGallery"></div>
+            <input type="file" id="imageUploadInput" multiple accept="image/*" class="hidden">
+        </div>
+    </div>
+
+    <!-- MODAL: Pinboard -->
+    <div id="pinboardModal" class="modal hidden">
+        <div class="modal-content pinboard-modal">
+            <button id="pinboardCloseBtn" class="close-btn">✕</button>
+            <h2>Pinnwand - Danksagungen</h2>
+            <div id="pinboardContainer"></div>
+            <div class="postit-block">
+                <div class="notepad-icon">📝</div>
+                <button id="addNoteBtn">Neue Notiz</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Toilet Paper Notes -->
+    <div id="toiletModal" class="modal hidden">
+        <div class="modal-content toilet-modal">
+            <button id="toiletCloseBtn" class="close-btn">✕</button>
+            <h2>🚽 Geistiger Dünnschiss</h2>
+            <div id="toiletContainer"></div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Image Viewer -->
+    <div id="fullscreenViewer" class="fullscreen-viewer hidden">
+        <img id="fullscreenImg" src="" alt="">
+    </div>
+
+    <!-- Confetti Container -->
+    <div id="confettiContainer"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js"></script>
+    <script src="sounds.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
