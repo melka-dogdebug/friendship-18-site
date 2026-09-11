@@ -17,6 +17,7 @@ Eine interaktive Website zum Feiern von 18 Jahren Freundschaft!
 🔊 **Sound-Effekte:**
 - Blättern, Klicken, Quietschen
 - Motor, Papiergeräusch
+- Spülgeräusch, Blubbern
 - Confetti & Fanfare
 
 🔐 **Sicherheit:**
