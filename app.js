@@ -1,11 +1,12 @@
 /* ===== FIREBASE CONFIG ===== */
 const firebaseConfig = {
-    apiKey: "DEIN_API_KEY",
-    authDomain: "friendship-18-site.firebaseapp.com",
-    projectId: "friendship-18-site",
-    storageBucket: "friendship-18-site.appspot.com",
-    messagingSenderId: "DEINE_MESSAGING_SENDER_ID",
-    appId: "DEINE_APP_ID"
+  apiKey: "AIzaSyBrGS4nzUtdus6wQXihKvvDz-UE4ta3uls",
+  authDomain: "friendship-18-site.firebaseapp.com",
+  databaseURL: "https://friendship-18-site-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "friendship-18-site",
+  storageBucket: "friendship-18-site.firebasestorage.app",
+  messagingSenderId: "321285999348",
+  appId: "1:321285999348:web:a99bb0b45ad781fef16ca1"
 };
 
 // Initialize Firebase
