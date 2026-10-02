@@ -1,17 +1,17 @@
 /* ===== FIREBASE CONFIG ===== */
 const firebaseConfig = {
-    apiKey: "AIzaSyDummyKeyPlaceholder123",
+    apiKey: "DEIN_API_KEY",
     authDomain: "friendship-18-site.firebaseapp.com",
     projectId: "friendship-18-site",
     storageBucket: "friendship-18-site.appspot.com",
-    messagingSenderId: "123456789",
-    appId: "1:123456789:web:abcdef123456"
+    messagingSenderId: "DEINE_MESSAGING_SENDER_ID",
+    appId: "DEINE_APP_ID"
 };
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
-const storage = firebase.storage();
+
 
 /* ===== STATE MANAGEMENT ===== */
 let isAuthorized = false;
@@ -364,25 +364,46 @@ function loadImages() {
     });
 }
 
-function handleImageUpload(event) {
+async function handleImageUpload(event) {
     const files = event.target.files;
-    
-    Array.from(files).forEach((file, index) => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            const timestamp = Date.now() + index;
-            const ref = db.ref(`images/${timestamp}`);
-            
-            // For demo: store as data URL (in production, use Firebase Storage)
-            ref.set({
-                url: e.target.result,
+
+    for (const file of files) {
+        try {
+            const user = "Amelie";
+            const appPassword = "8XeKE-oe2e8-8SKHf-bpPa6-b9yYn";
+            const folder = "18er friendship";
+            const baseUrl = "https://next.petomka.de";
+
+            const encodedFileName = encodeURIComponent(file.name);
+            const remoteUrl = `${baseUrl}/remote.php/dav/files/${user}/${folder}/${encodedFileName}`;
+            const auth = "Basic " + btoa(`${user}:${appPassword}`);
+
+            const response = await fetch(remoteUrl, {
+                method: "PUT",
+                headers: {
+                    "Authorization": auth,
+                    "Content-Type": file.type || "application/octet-stream"
+                },
+                body: file
+            });
+
+            if (!response.ok) {
+                throw new Error(`Upload fehlgeschlagen: ${response.status}`);
+            }
+
+            const timestamp = Date.now();
+            db.ref(`images/${timestamp}`).set({
+                url: remoteUrl,
                 timestamp: timestamp,
                 uploader: currentUser || 'Anonym'
             });
-        };
-        reader.readAsDataURL(file);
-    });
-    
+
+        } catch (error) {
+            console.error(error);
+            alert("Bild-Upload zu Nextcloud fehlgeschlagen. Prüfe App-Passwort und Ordner.");
+        }
+    }
+
     event.target.value = '';
     loadImages();
 }
